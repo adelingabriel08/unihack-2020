@@ -1,0 +1,16 @@
+nav {
+  box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.2);
+  height: 80px;
+}
+.nav-item {
+  font-weight: bold;
+  transition: all ease 0.7s;
+  background-color: transparent;
+  margin: 0px 15px 0px 15px;
+}
+button {
+  background-color: white !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 10px 20px 10px 20px !important ;
+}
