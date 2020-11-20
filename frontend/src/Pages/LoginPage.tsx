@@ -2,7 +2,7 @@ import { Paper, TextField } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { Person, Lock } from "@material-ui/icons";
 import React, { useState } from "react";
-import "../Pages/LoginPage.css";
+import "../Pages/PagesCSS/LoginPage.css";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
