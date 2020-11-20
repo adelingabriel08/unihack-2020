@@ -12,5 +12,7 @@ namespace unihack.Entities
         public bool Contact{get;set;}
         public string UserId{get;set;}
         
+        public User User { get; set; }
+        
     }
 }
