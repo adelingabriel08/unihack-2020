@@ -8,6 +8,8 @@ namespace unihack.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        
+        public UserTypeEnum UserType { get; set; }
         [NotMapped]
         public override string PhoneNumber { get; set; }
         [NotMapped]
@@ -23,5 +25,13 @@ namespace unihack.Entities
 
         public User() : base() {}
         public User(string userName) : base(userName) {}
+    }
+
+    public enum UserTypeEnum
+    {
+        Patient,
+        Doctor,
+        DspEmployee,
+        NoRoles
     }
 }
