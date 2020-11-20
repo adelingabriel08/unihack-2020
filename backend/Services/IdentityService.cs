@@ -40,8 +40,6 @@ namespace unihack.Services
             {
                 Email = request.Email,
                 UserName = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, request.Password);
@@ -82,9 +80,6 @@ namespace unihack.Services
 
         public async Task<AuthenticationResult> UpdateAsync(User currentUser ,UserUpdateRequest request)
         {
-            currentUser.FirstName = request.FirstName;
-            currentUser.LastName = request.LastName;
-            
             await _userManager.UpdateAsync(currentUser);
             
             return GenerateAuthenticationResult(currentUser);

@@ -10,7 +10,8 @@ namespace unihack.Data
         {
         }
 //          public DbSet<Entity Name> HeaterEntities { get; set; }
-          
+            public DbSet<HealthStateEntity> HealthStateEntities { get; set; }
+          public DbSet<Profile> ProfileEntities { get; set; }
 
 
           public IRepository<T> GetRepository<T>() where T: Entity
