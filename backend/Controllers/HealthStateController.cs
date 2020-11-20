@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using unihack.Data;
 using unihack.Entities;
+using unihack.Extensions;
 
 namespace unihack.Controllers
 {
@@ -25,6 +26,8 @@ namespace unihack.Controllers
         [HttpPost("Add")]
         public async Task<IActionResult> Post([FromBody] HealthStateEntity healthStateEntity)
         {
+            var userId = HttpContext.GetCurrentUserId();
+            if (userId is null) return Unauthorized();
             await _healthStateRepository.AddAsync((healthStateEntity));
             return Ok();
         }
