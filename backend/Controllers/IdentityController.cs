@@ -100,8 +100,6 @@ namespace unihack.Controllers
             var user = await HttpContext.GetCurrentUserAsync(_userManager);
             return Ok(new
             {
-                user.FirstName,
-                user.LastName,
                 user.Email,
             });
         }
@@ -128,8 +126,6 @@ namespace unihack.Controllers
 
             return Ok(new
             {
-                user.FirstName,
-                user.LastName,
                 user.Email
             });
         }

@@ -6,10 +6,7 @@ namespace unihack.Entities
 {
     public class User : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        
-        public UserTypeEnum UserType { get; set; }
+        public UserTypeEnum Type { get; set; }
         [NotMapped]
         public override string PhoneNumber { get; set; }
         [NotMapped]
