@@ -157,6 +157,30 @@ namespace unihack.Migrations
                     b.ToTable("HealthStateEntities");
                 });
 
+            modelBuilder.Entity("unihack.Entities.Profile", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<int>("Age");
+
+                    b.Property<bool>("Contact");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProfileEntities");
+                });
+
             modelBuilder.Entity("unihack.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -170,10 +194,6 @@ namespace unihack.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -183,6 +203,8 @@ namespace unihack.Migrations
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<int>("Type");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
