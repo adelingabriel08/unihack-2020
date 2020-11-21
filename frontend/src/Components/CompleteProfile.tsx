@@ -82,13 +82,13 @@ export default function CompleteProfile() {
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           >
-            <MenuItem key="f" value="Feminin">
+            <MenuItem key="f" value="f">
               Feminin
             </MenuItem>
-            <MenuItem key="m" value="Masculin">
+            <MenuItem key="m" value="m">
               Masculin
             </MenuItem>
-            <MenuItem key="n" value="Nementionat">
+            <MenuItem key="n" value="n">
               Nu mentionez
             </MenuItem>
           </TextField>
