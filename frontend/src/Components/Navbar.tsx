@@ -46,6 +46,13 @@ export const Navbar = () => {
           >
             Login
           </Button>
+          <Button
+            onClick={() => history.push("/register")}
+            variant="contained"
+            color="inherit"
+          >
+            Register
+          </Button>
         </div>
       </div>
     </nav>
