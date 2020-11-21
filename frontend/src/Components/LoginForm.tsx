@@ -2,11 +2,23 @@ import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { Person, Lock } from "@material-ui/icons";
 import "./ComponentsCSS/LoginAndRegisterForm.css";
+import { User } from "../Models/Models";
+import functions from "../Services/ApiService";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const { login } = functions();
 
+  async function loginUser() {
+    const user: User = {
+      email: userEmail,
+      password: password,
+    };
+
+    const userJson = JSON.stringify(user);
+    login(userJson);
+  }
   return (
     <div>
       <div className="container-fluid loginregisterform">
@@ -18,13 +30,13 @@ export default function LoginForm() {
           <TextField
             required
             fullWidth
-            id="userName"
-            label="User Name"
-            name="userName"
-            autoComplete="userName"
+            id="userEmail"
+            label="User Email"
+            name="userEmail"
+            autoComplete="userEmail"
             autoFocus
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
           />
         </div>
         <div className="container field">
@@ -43,7 +55,9 @@ export default function LoginForm() {
         </div>
         <div className="buttons">
           <Button className="button">Cancel</Button>
-          <Button className="button">Login</Button>
+          <Button onClick={() => loginUser()} className="button">
+            Login
+          </Button>
         </div>
       </div>
     </div>
