@@ -18,3 +18,9 @@ button {
   outline: none !important;
   padding: 10px 20px 10px 20px !important ;
 }
+.bottom-nav{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+}

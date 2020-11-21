@@ -1,27 +1,10 @@
-.loginpaper {
-  background-color: whitesmoke;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.title {
-  margin: 0;
-}
-
-.content {
-  margin: 0;
-}
-
-@media (max-width: 1200px) {
-  .loginpaper {
-    width: 80%;
-  }
+.login-register-page {
+  margin-top: 50px;
+  background-color: #f8ef42;
+  background-image: linear-gradient(315deg, #f8ef42 0%, #0fd64f 74%);
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  padding-top: 100px;
+  padding: 100px 0px;
 }
