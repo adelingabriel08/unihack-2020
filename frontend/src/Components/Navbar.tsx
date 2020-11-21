@@ -9,7 +9,7 @@ export const Navbar = () => {
       <div className="d-flex">
         <div className="nav-item">
           {/* icon here */}
-          <Button variant="contained" color="inherit">
+          <Button variant="contained" color="inherit" style={{color: "#1DB954"}}>
             Home
           </Button>
         </div>
