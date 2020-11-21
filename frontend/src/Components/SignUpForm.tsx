@@ -14,7 +14,7 @@ export default function SignUpForm() {
       email: email,
       password: password,
     };
-    console.log("const: " + user);
+    console.log("const: " + user.email + " " + user.password);
     const userJson = JSON.stringify(user);
     console.log("json: " + userJson);
     register(userJson);

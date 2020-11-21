@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, Paper, TextField } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
+import { Button, TextField } from "@material-ui/core";
 import { Person, Lock } from "@material-ui/icons";
 import "./ComponentsCSS/LoginForm.css";
 
