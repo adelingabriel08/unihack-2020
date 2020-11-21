@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Newtonsoft.Json.Serialization;
@@ -25,13 +27,36 @@ namespace unihack.Controllers
     {
         private readonly IRepository<ProfileEntity> _repository;
         private readonly IRepository<HealthStateEntity> _repositoryHealthState;
+        private readonly UserManager<User> _userManager;
         MLContext mlContext = new MLContext(seed: 0);
 
 
-        public Profile(ApplicationDbContext ctx)
+        public Profile(ApplicationDbContext ctx, UserManager<User> userManager)
         {
             _repository = ctx.GetRepository<ProfileEntity>();
             _repositoryHealthState = ctx.GetRepository<HealthStateEntity>();
+            _userManager = userManager;
+
+        }
+        
+        [HttpGet("/getProfiles")]
+        public async Task<IActionResult> GetProfiles(string name)
+        {
+            var userId = HttpContext.GetCurrentUserId();
+            if (userId is null) return Unauthorized();
+            var user = await HttpContext.GetCurrentUserAsync(_userManager);
+            if (user==null || user.Type == 3 || user.Type == 0)
+                return Unauthorized();
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                var profiles = _repository.Queryable.Include(t => t.User).Where(t => t.User.Type == 1).ToList();
+                return Ok(profiles);
+            }
+            else
+            {
+                var profiles = _repository.Queryable.Include(t => t.User).Where(t => t.User.Type == 1 && t.Name.ToLower().Contains(name.ToLower())).ToList();
+                return Ok(profiles);
+            }
         }
 
         [HttpPost("/Create")]
