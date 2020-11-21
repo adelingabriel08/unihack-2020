@@ -1,5 +1,4 @@
 import Axios from "axios";
-import React from "react";
 
 export interface iFunctions {
   readonly register: (myjson: string) => void;
@@ -14,7 +13,11 @@ export interface User {
 
 export const functions = () => {
   async function register(myjson: string) {
-    Axios.post(baseURL + "api/Auth/Register", myjson)
+    Axios.post(baseURL + "api/Auth/Register", myjson, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then(function (response) {
         console.log(response);
       })
