@@ -15,5 +15,10 @@ namespace unihack.Entities
         public bool Diarrhea { get; set; }
         public int Severity { get; set; }
         
+        public string UserId{get;set;}
+        
+        public User User { get; set; }
+
+        
     }
 }

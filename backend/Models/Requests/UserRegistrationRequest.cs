@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using unihack.Entities;
 
 namespace unihack.Models.Requests
 {
@@ -8,5 +9,7 @@ namespace unihack.Models.Requests
         [EmailAddress]
         public string Email { get; set; }
         public string Password { get; set; }
+        
+        public int UserType { get; set; }
     }
 }

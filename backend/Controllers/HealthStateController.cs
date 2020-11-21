@@ -28,6 +28,8 @@ namespace unihack.Controllers
         {
             var userId = HttpContext.GetCurrentUserId();
             if (userId is null) return Unauthorized();
+            healthStateEntity.UserId = userId;
+            
             await _healthStateRepository.AddAsync((healthStateEntity));
             return Ok();
         }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using unihack.Entities;
 
 namespace unihack.Models.Requests
 {

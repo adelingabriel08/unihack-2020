@@ -40,6 +40,7 @@ namespace unihack.Services
             {
                 Email = request.Email,
                 UserName = request.Email,
+                Type = request.UserType
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, request.Password);
@@ -108,7 +109,8 @@ namespace unihack.Services
             return new AuthenticationResult
             {
                 Success = true,
-                Token = tokenHandler.WriteToken(token)
+                Token = tokenHandler.WriteToken(token),
+                UserType = newUser.Type
             };
         }
     }
