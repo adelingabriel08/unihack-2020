@@ -3,7 +3,7 @@ import { Button, TextField } from "@material-ui/core";
 import { Person, Lock } from "@material-ui/icons";
 import "./ComponentsCSS/LoginAndRegisterForm.css";
 import { User } from "../Models/Models";
-import functions from "../Services/functions";
+import functions from "../Services/ApiService";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
