@@ -70,7 +70,7 @@ namespace unihack.Controllers
            
            IDataView dataView = mlContext.Data.LoadFromEnumerable(profileEntities);
            var pipeline = mlContext.Transforms.CopyColumns(outputColumnName: "Label", inputColumnName:"Severity")
-               .Append(mlContext.Transforms.Concatenate("Features", "Fever", "DryCough", "RunnyNose", "TiredNess","DifficultyInBreathing", "SoreThroat", "None_Symptom", "Pains", "NasalCongestion", "Diarrhea", "Age", "Gender", "Contact"))
+               .Append(mlContext.Transforms.Concatenate("Features", "Fever", "DryCough", "RunnyNose", "TiredNess","DifficultyInBreathing", "SoreThroat", "None_Symptom", "Pains", "NasalCongestion", "Diarrhea", "Age09" ,"Age1019","Age2024","Age2559", "Age60", "Gender", "Contact"))
                .Append(mlContext.Regression.Trainers.LbfgsPoissonRegression());
            var model = pipeline.Fit(dataView);
            var severity = Predict(mlContext, model, userProfile);
@@ -84,20 +84,26 @@ namespace unihack.Controllers
             var covidSymptomesSample = new CovidSympomes()
             {
                 
-               Age = userProfile.Age,
-               Contact = userProfile.Contact,
-               Diarrhea = userProfile.HealthState.Diarrhea,
-               Fever = userProfile.HealthState.Fever,
-               Gender = userProfile.Gender,
-               Pains = userProfile.HealthState.Pains,
+               Age09 = userProfile.Age<10? 1 : 0,
+               Age1019 = userProfile.Age>=10&& userProfile.Age<20 ? 1 : 0,
+               Age2024 = userProfile.Age>=20 && userProfile.Age<25 ? 1 : 0,
+
+               Age2559 = userProfile.Age>24 && userProfile.Age<60 ? 1 : 0,
+               Age60 = userProfile.Age>59 ? 1 : 0,
+
+               Contact = userProfile.Contact? 1 : 0,
+               Diarrhea = userProfile.HealthState.Diarrhea? 1 : 0,
+               Fever = userProfile.HealthState.Fever? 1 : 0,
+               Gender = userProfile.Gender== "m"? 1 : 0,
+               Pains = userProfile.HealthState.Pains? 1 : 0,
                Severity = userProfile.HealthState.Severity,
-               DryCough = userProfile.HealthState.DryCough,
-               NasalCongestion = userProfile.HealthState.NasalCongestion,
-               None_Symptom = userProfile.HealthState.None_Symptom,
-               RunnyNose = userProfile.HealthState.RunnyNose,
-               SoreThroat = userProfile.HealthState.SoreThroat,
-               TiredNess = userProfile.HealthState.TiredNess,
-               DifficultyInBreathing = userProfile.HealthState.DifficultyInBreathing
+               DryCough = userProfile.HealthState.DryCough? 1 : 0,
+               NasalCongestion = userProfile.HealthState.NasalCongestion? 1 : 0,
+               None_Symptom = userProfile.HealthState.None_Symptom? 1 : 0,
+               RunnyNose = userProfile.HealthState.RunnyNose? 1 : 0,
+               SoreThroat = userProfile.HealthState.SoreThroat? 1 : 0,
+               TiredNess = userProfile.HealthState.TiredNess? 1 : 0,
+               DifficultyInBreathing = userProfile.HealthState.DifficultyInBreathing ? 1 : 0
             };
             var prediction = predictionFunction.Predict(covidSymptomesSample);
             Console.WriteLine($"**********************************************************************");
@@ -114,25 +120,26 @@ namespace unihack.Controllers
             {
                 var items = line.Split(',').ToList();
                 var profileEntity = new CovidSympomes();
-                profileEntity.Fever = items[0]=="1";   
+                profileEntity.Fever = Int32.Parse(items[0]);   
 
-                profileEntity.TiredNess = items[1]=="1";
-                profileEntity.DryCough = items[2]=="1";
-                profileEntity.DifficultyInBreathing = items[3]=="1";
-                profileEntity.SoreThroat = items[4]=="1";
-                profileEntity.None_Symptom = items[5]=="1";
-                profileEntity.Pains = items[6]=="1";
-                profileEntity.NasalCongestion = items[7]=="1";
-                profileEntity.RunnyNose = items[8]=="1";
-                profileEntity.Diarrhea = items[9]=="1";
-                profileEntity.Age = items[11] == "1" ? 7 :
-                    items[12] == "1" ? 15 :
-                    items[13] == "1" ? 23 :
-                    items[14] == "1" ? 40 : 65;
-                profileEntity.Gender = items[16]=="1"; //0 for male
+                profileEntity.TiredNess = Int32.Parse(items[1]);
+                profileEntity.DryCough = Int32.Parse(items[2]);
+                profileEntity.DifficultyInBreathing = Int32.Parse(items[3]);
+                profileEntity.SoreThroat = Int32.Parse(items[4]);
+                profileEntity.None_Symptom = Int32.Parse(items[5]);
+                profileEntity.Pains = Int32.Parse(items[6]);
+                profileEntity.NasalCongestion = Int32.Parse(items[7]);
+                profileEntity.RunnyNose = Int32.Parse(items[8]);
+                profileEntity.Diarrhea =Int32.Parse( items[9]);
+                profileEntity.Age09 = Int32.Parse(items[11]);
+                profileEntity.Age1019 = Int32.Parse(items[12]);
+                profileEntity.Age2024 = Int32.Parse(items[13] );
+                profileEntity.Age2559 = Int32.Parse(items[14]) ;
+                profileEntity.Age60 = Int32.Parse(items[15] );
+                profileEntity.Gender = Int32.Parse(items[16]); //0 for male
                 profileEntity.Severity =
                     items[0] == "19" ? 1 : items[20] == "1" ? 2 : items[21] == "1" ? 0 : 4;
-                profileEntity.Contact = items[25] == "1";
+                profileEntity.Contact = Int32.Parse(items[25]);
                 profileEntitiesList.Add(profileEntity);
 
 
@@ -146,35 +153,41 @@ namespace unihack.Controllers
     public class CovidSympomes
     {
         [LoadColumn(0)]
-        public bool Fever { get; set; }
+        public float Fever { get; set; }
         [LoadColumn(1)]
-        public bool DryCough { get; set; }
+        public float DryCough { get; set; }
         [LoadColumn(2)]
-        public bool RunnyNose { get; set; }
+        public float RunnyNose { get; set; }
         [LoadColumn(3)]
-        public bool TiredNess { get; set; }
+        public float TiredNess { get; set; }
         [LoadColumn(4)]
-        public bool DifficultyInBreathing { get; set; }
+        public float DifficultyInBreathing { get; set; }
         [LoadColumn(5)]
-        public bool SoreThroat {get; set; }
+        public float SoreThroat {get; set; }
         [LoadColumn(6)]
-        public bool None_Symptom {get; set; }
+        public float None_Symptom {get; set; }
         [LoadColumn(7)]
-        public bool Pains { get; set; }
+        public float Pains { get; set; }
         [LoadColumn(8)]
-        public bool NasalCongestion { get; set; }
+        public float NasalCongestion { get; set; }
         [LoadColumn(9)]
-        public bool Diarrhea { get; set; }
+        public float Diarrhea { get; set; }
         [LoadColumn(10)]
-        public int Severity { get; set; }
+        public float Age09 { get; set; }
         [LoadColumn(11)]
-        public int Age { get; set; }
-        
+        public float Age1019 { get; set; }
         [LoadColumn(12)]
-        public bool Gender { get; set; }
-        
+        public float Age2024 { get; set; }
         [LoadColumn(13)]
-        public bool Contact { get; set; }
+        public float Age2559 { get; set; }
+        [LoadColumn(14)]
+        public float Age60 { get; set; }
+        [LoadColumn(15)]
+        public float Gender { get; set; }
+        [LoadColumn(16)]
+        public float Contact { get; set; }
+        [LoadColumn(17)]
+        public float Severity { get; set; }
         public object Clone()
         {
             return this.MemberwiseClone();
@@ -185,6 +198,6 @@ namespace unihack.Controllers
     public class CovidSeverityPrediction
     {
         [ColumnName("Score")]
-        public int Severity { get; set; }
+        public float Severity { get; set; }
     }
 }
