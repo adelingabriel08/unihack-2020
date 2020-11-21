@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -77,7 +77,14 @@ namespace unihack
                 c.IncludeXmlComments(xmlPath);
                 c.EnableAnnotations();
             });
-
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                    });
+            });
             // Ensure JWT
             var jwtOptions = new JwtOptions();
             Configuration.Bind(nameof(jwtOptions), jwtOptions);
@@ -125,6 +132,7 @@ namespace unihack
             }
 
 //            app.UseHttpsRedirection();
+            app.UseCors();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -141,6 +149,7 @@ namespace unihack
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "post API V1"); });
 
             app.UseMvc();
+            
         }
     }
 }
