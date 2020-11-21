@@ -59,7 +59,8 @@ namespace unihack.Controllers
 
             return Ok(new AuthSuccessResponse
             {
-                Token = authResponse.Token
+                Token = authResponse.Token,
+                UserType = request.UserType
             });
         }
 
@@ -74,7 +75,6 @@ namespace unihack.Controllers
         public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
         {
             var authResponse = await _identityService.LoginAsync(request.Email, request.Password);
-
             if (!authResponse.Success)
             {
                 return BadRequest(new AuthFailedResponse
@@ -85,7 +85,9 @@ namespace unihack.Controllers
 
             return Ok(new AuthSuccessResponse
             {
-                Token = authResponse.Token
+                Token = authResponse.Token,
+                UserType = authResponse.UserType
+                
             });
         }
 
