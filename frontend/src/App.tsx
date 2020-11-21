@@ -5,7 +5,6 @@ import Routes from "./Routes";
 export const App = () => {
   return (
     <>
-      <Navbar />
       <Routes></Routes>
     </>
   );

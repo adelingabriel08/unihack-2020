@@ -24,3 +24,12 @@ button {
   left: 0px;
   width: 100%;
 }
+.active-link{
+  color: #1DB954 !important;
+}
+a{
+  color: inherit;
+}
+a:hover{
+  text-decoration: none;
+}

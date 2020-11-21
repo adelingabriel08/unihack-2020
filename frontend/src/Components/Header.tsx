@@ -5,14 +5,15 @@ import './ComponentsCSS/Typography.css';
 type HeaderProps = {
     title: string,
     subtitle?: string,
-    imagePath: string
+    imagePath: string,
+    id?: string
 }
 export const Header = (props: HeaderProps) => {
     return (
         <div className="container ">
             <div className="row d-flex"  style={{margin: "160px 0px 100px 0px"}}>
                 <div className="col-12 col-lg-6 d-flex flex-column ">
-                    <div data-aos="fade-up" data-aos-duration="1000">
+                    <div data-aos="fade-up" data-aos-duration="1000" id={props.id}>
                         <Typography
                             variant="h1"
                             gutterBottom
