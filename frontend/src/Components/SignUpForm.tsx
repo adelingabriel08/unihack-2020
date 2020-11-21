@@ -1,8 +1,10 @@
 import { Button, TextField } from "@material-ui/core";
 import { Lock, Person } from "@material-ui/icons";
 import React, { useState } from "react";
-import "../Components/ComponentsCSS/LoginForm.css";
-import functions, { User } from "../Services/functions";
+import "../Components/ComponentsCSS/LoginAndRegisterForm.css";
+import functions from "../Services/functions";
+import history from "../Components/History";
+import { User } from "../Models/Models";
 
 export default function SignUpForm() {
   const [password, setPassword] = useState("");
@@ -22,7 +24,7 @@ export default function SignUpForm() {
 
   return (
     <div>
-      <div className="container-fluid loginform">
+      <div className="container-fluid loginregisterform">
         <div>
           <h1>Register</h1>
         </div>
@@ -55,7 +57,9 @@ export default function SignUpForm() {
           />
         </div>
         <div className="buttons">
-          <Button className="button">Cancel</Button>
+          <Button onClick={() => history.push("/")} className="button">
+            Cancel
+          </Button>
           <Button onClick={() => userRegister()} className="button">
             Register
           </Button>

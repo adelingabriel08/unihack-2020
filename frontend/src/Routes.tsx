@@ -4,6 +4,7 @@ import Login from "./Pages/LoginPage";
 import Home from "./Pages/HomePage";
 import history from "./Components/History";
 import Register from "./Pages/SignUpPage";
+import CompleteProfilePage from "./Pages/CompleteProfilePage";
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/completeprofile" component={CompleteProfilePage} />
           <Route path="/doctor" />
         </Switch>
       </Router>
