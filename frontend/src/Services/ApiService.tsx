@@ -1,6 +1,4 @@
-import { CompareArrowsOutlined } from "@material-ui/icons";
 import Axios from "axios";
-import { get } from "https";
 import History from "../Components/History";
 
 export interface iFunctions {
@@ -11,15 +9,15 @@ export interface iFunctions {
 const baseURL = "http://34.68.55.0:5010/";
 
 function setToken(token: string) {
-  sessionStorage.setItem("token", JSON.stringify(token));
+  localStorage.setItem("token", JSON.stringify(token));
 }
 
 function getToken() {
-  const token = JSON.parse(sessionStorage.getItem("token") + "");
+  const token = JSON.parse(localStorage.getItem("token") + "");
   return token.token;
 }
 
-export const functions = () => {
+export const apiService = () => {
   async function register(myjson: string) {
     Axios.post(baseURL + "api/Auth/Register", myjson, {
       headers: {
@@ -28,7 +26,6 @@ export const functions = () => {
     })
       .then(function (response) {
         setToken(response.data);
-        console.log(response.data);
         History.push("/completeprofile");
       })
       .catch(function (error) {
@@ -44,7 +41,6 @@ export const functions = () => {
       },
     })
       .then(function (response) {
-        console.log(response);
         History.push("/");
       })
       .catch(function (error) {
@@ -58,4 +54,4 @@ export const functions = () => {
   };
 };
 
-export default functions;
+export default apiService;

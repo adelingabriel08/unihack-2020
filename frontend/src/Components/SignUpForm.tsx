@@ -2,14 +2,14 @@ import { Button, TextField } from "@material-ui/core";
 import { Lock, Person } from "@material-ui/icons";
 import React, { useState } from "react";
 import "../Components/ComponentsCSS/LoginAndRegisterForm.css";
-import functions from "../Services/functions";
+import apiService from "../Services/ApiService";
 import history from "../Components/History";
 import { User } from "../Models/Models";
 
 export default function SignUpForm() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { register } = functions();
+  const { register } = apiService();
 
   async function userRegister() {
     const user: User = {

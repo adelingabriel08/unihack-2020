@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import "../Components/ComponentsCSS/LoginAndRegisterForm.css";
 import { Profile } from "../Models/Models";
-import functions from "../Services/functions";
+import apiService from "../Services/ApiService";
 
 export default function CompleteProfile() {
   const [name, setName] = useState("");
@@ -18,7 +18,7 @@ export default function CompleteProfile() {
   const [gender, setGender] = useState("");
   const [age, setAge] = useState(18);
   const [contact, setContact] = useState(false);
-  const { saveProfile } = functions();
+  const { saveProfile } = apiService();
 
   async function saveProfilefcn() {
     const profile: Profile = {
@@ -82,13 +82,13 @@ export default function CompleteProfile() {
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           >
-            <MenuItem key="f" value="Feminin">
+            <MenuItem key="f" value="f">
               Feminin
             </MenuItem>
-            <MenuItem key="m" value="Masculin">
+            <MenuItem key="m" value="m">
               Masculin
             </MenuItem>
-            <MenuItem key="n" value="Nementionat">
+            <MenuItem key="n" value="n">
               Nu mentionez
             </MenuItem>
           </TextField>

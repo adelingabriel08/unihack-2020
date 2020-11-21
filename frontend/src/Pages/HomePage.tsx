@@ -7,8 +7,8 @@ export default function HomePAge() {
     return (
         <>
             <Header title="Monitoring COVID-19 Sympthoms" subtitle="we're here to prevent new COVID-19 cases"
-                    imagePath="assets/images/bg-image1.jpg"/>
-            <FilledBackground>
+                    imagePath="assets/images/bg-image1.jpg" />
+            <FilledBackground id="staySafe">
                 <Typography
                     variant="h2"
                     gutterBottom
@@ -17,7 +17,7 @@ export default function HomePAge() {
                 >
                     What our doctors recommend
                 </Typography>
-                <div className="col-12 col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                <div className="col-12 col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
                     <img src="assets/images/stay_safe.svg" width="100%"/>
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1000"
@@ -52,7 +52,7 @@ export default function HomePAge() {
             </FilledBackground>
             <Header title="How many people have COVID-19?"
                     subtitle="It has spread so rapidly and to so many countries that the World Health Organization has declared it a pandemic"
-                    imagePath="assets/images/fever.gif"/>
+                    imagePath="assets/images/fever.gif" id="stats"/>
             <FilledBackground><p>Hello World!</p></FilledBackground>
             <FilledBackground><p>Hello World!</p></FilledBackground>
         </>
