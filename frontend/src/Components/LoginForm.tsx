@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { Person, Lock } from "@material-ui/icons";
-import "./ComponentsCSS/LoginForm.css";
+import "./ComponentsCSS/LoginAndRegisterForm.css";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
@@ -9,7 +9,7 @@ export default function LoginForm() {
 
   return (
     <div>
-      <div className="container-fluid loginform">
+      <div className="container-fluid loginregisterform">
         <div>
           <h1>Login form</h1>
         </div>
