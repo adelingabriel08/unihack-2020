@@ -60,9 +60,15 @@ export default function Footer() {
         </div>
       </div>
       <div className="icons container-fluid d-flex justify-content-between align-items-center">
-        <Facebook style={{ fill: "whitesmoke" }}></Facebook>
-        <Instagram style={{ fill: "whitesmoke" }}></Instagram>
-        <Twitter style={{ fill: "whitesmoke" }}></Twitter>
+        <a href="#">
+          <Facebook style={{ fill: "whitesmoke" }}></Facebook>
+        </a>
+        <a href="#">
+          <Instagram style={{ fill: "whitesmoke" }}></Instagram>
+        </a>
+        <a href="#">
+          <Twitter style={{ fill: "whitesmoke" }}></Twitter>
+        </a>
       </div>
     </div>
   );

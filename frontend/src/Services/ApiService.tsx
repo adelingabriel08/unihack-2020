@@ -4,6 +4,7 @@ import History from "../Components/History";
 export interface iFunctions {
   readonly register: (myjson: string) => void;
   readonly saveProfile: (myjson: string) => void;
+  readonly login: (myjson: string) => void;
 }
 
 const baseURL = "http://34.68.55.0:5010/";
@@ -33,6 +34,21 @@ export const apiService = () => {
       });
   }
 
+  async function login(myjson: string) {
+    Axios.post(baseURL + "api/Auth/Login", myjson, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        setToken(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   async function saveProfile(myjson: string) {
     Axios.post(baseURL + "Create", myjson, {
       headers: {
@@ -51,6 +67,7 @@ export const apiService = () => {
   return {
     register,
     saveProfile,
+    login,
   };
 };
 
