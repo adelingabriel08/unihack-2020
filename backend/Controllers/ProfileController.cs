@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML;
 using unihack.Data;
 using unihack.Extensions;
 using unihack.Models.Requests;
@@ -18,12 +19,13 @@ namespace unihack.Controllers
     [ProducesResponseType(typeof(UnauthorizedResult), 401)]
     public class Profile : Controller
     {
-        private readonly IRepository<Entities.Profile> _repository;
+        private readonly IRepository<Entities.ProfileEntity> _repository;
+        MLContext mlContext = new MLContext(seed: 0);
 
 
         public Profile(ApplicationDbContext ctx)
         {
-            _repository = ctx.GetRepository<Entities.Profile>();
+            _repository = ctx.GetRepository<Entities.ProfileEntity>();
         }
 
         [HttpPost]

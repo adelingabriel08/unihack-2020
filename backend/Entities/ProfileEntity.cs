@@ -3,7 +3,7 @@ using unihack.Models.Requests;
 
 namespace unihack.Entities
 {
-    public class Profile: Entity
+    public class ProfileEntity: Entity
     {
         public string Name{get;set;}
         public string Address{get;set;}
@@ -13,6 +13,8 @@ namespace unihack.Entities
         public string UserId{get;set;}
         
         public User User { get; set; }
+        
+        public HealthStateEntity HealthState { get; set; }
         
     }
 }

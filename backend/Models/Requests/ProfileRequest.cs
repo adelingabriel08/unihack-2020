@@ -11,9 +11,9 @@ namespace unihack.Models.Requests
         public bool Contact { get; set; }
 
 
-        public Profile toEntity()
+        public ProfileEntity toEntity()
         {
-            Entities.Profile p = new Entities.Profile();
+            Entities.ProfileEntity p = new Entities.ProfileEntity();
             p.Name = Name;
             p.Address = Address;
             p.Gender = Gender;
