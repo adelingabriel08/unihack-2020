@@ -4,6 +4,7 @@ import { Person, Lock } from "@material-ui/icons";
 import "./ComponentsCSS/LoginAndRegisterForm.css";
 import { User } from "../Models/Models";
 import functions from "../Services/ApiService";
+import history from "../Components/History";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
@@ -54,7 +55,9 @@ export default function LoginForm() {
           />
         </div>
         <div className="buttons">
-          <Button className="button">Cancel</Button>
+          <Button onClick={() => history.push("/register")} className="button">
+            Register
+          </Button>
           <Button onClick={() => loginUser()} className="button">
             Login
           </Button>
