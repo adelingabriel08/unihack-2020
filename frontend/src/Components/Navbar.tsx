@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import "./ComponentsCSS/Navbar.css";
+import history from "./History";
 
 export const Navbar = () => {
   return (
@@ -9,7 +10,12 @@ export const Navbar = () => {
       <div className="d-flex">
         <div className="nav-item">
           {/* icon here */}
-          <Button variant="contained" color="inherit" style={{color: "#1DB954"}}>
+          <Button
+            onClick={() => history.push("/")}
+            variant="contained"
+            color="inherit"
+            style={{ color: "#1DB954" }}
+          >
             Home
           </Button>
         </div>
@@ -33,7 +39,11 @@ export const Navbar = () => {
         </div>
         <div className="nav-item">
           {/* icon here */}
-          <Button variant="contained" color="inherit">
+          <Button
+            onClick={() => history.push("/login")}
+            variant="contained"
+            color="inherit"
+          >
             Login
           </Button>
         </div>

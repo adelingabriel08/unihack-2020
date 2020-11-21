@@ -1,16 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import Login from "./Pages/LoginPage";
 import Home from "./Pages/HomePage";
+import history from "./Components/History";
 
 export default function Routes() {
   return (
     <div>
-      <Router>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/doctor" />
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/doctor" />
         </Switch>
       </Router>
     </div>
