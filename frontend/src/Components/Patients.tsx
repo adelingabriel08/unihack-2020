@@ -74,6 +74,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
       <TableRow className={classes.root} id="bigtable">
         <TableCell>
           <IconButton
+            className="iconbutton"
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
