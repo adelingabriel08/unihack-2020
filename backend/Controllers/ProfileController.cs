@@ -49,7 +49,7 @@ namespace unihack.Controllers
                 return Unauthorized();
             if (String.IsNullOrWhiteSpace(name))
             {
-                var profiles = _repository.Queryable.Include(t => t.User).Where(t => t.User.Type == 1).ToList();
+                var profiles = _repository.Queryable.Include(t => t.User).Where(t => t.User.Type == 0).ToList();
                 foreach (var profile in profiles)
                 {
                     profile.HealthState = _repositoryHealthState.Queryable.FirstOrDefault(t => t.UserId == profile.UserId);
