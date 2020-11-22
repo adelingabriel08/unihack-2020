@@ -5,8 +5,11 @@ import Home from "./Pages/HomePage";
 import history from "./Components/History";
 import Register from "./Pages/SignUpPage";
 import CompleteProfilePage from "./Pages/CompleteProfilePage";
-import {Navbar} from "./Components/Navbar";
+
+import { Navbar } from "./Components/Navbar";
+import Patients from "./Components/Patients";
 import { HealthStateComponent} from "./Pages/HealthState";
+
 
 export default function Routes() {
   return (
@@ -18,6 +21,7 @@ export default function Routes() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/completeprofile" component={CompleteProfilePage} />
+          <Route path="/patients" component={Patients} />
           <Route path="/health-state" component={HealthStateComponent} />
           <Route path="/doctor" />
           <Route component={Home} />
