@@ -1,5 +1,6 @@
 import Axios from "axios";
 import History from "../Components/History";
+import {HealthState} from "../Models/Models";
 
 export interface iFunctions {
   readonly register: (myjson: string) => void;
@@ -63,11 +64,26 @@ export const apiService = () => {
         console.log(error);
       });
   }
+  const addHealthState = async (data: HealthState) =>{
+    Axios.post(baseURL + "api/HealthState/Add", JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getToken(),
+      },
+    })
+        .then(function (response) {
+          History.push("/");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
 
   return {
     register,
     saveProfile,
     login,
+    addHealthState,
   };
 };
 

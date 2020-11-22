@@ -13,14 +13,14 @@ export const Navbar = () => {
             <nav className="container-fluid d-flex justify-content-between align-items-center">
                 <img src="assets/images/stay_safe.svg" height="100px"/>
                 <div className="d-flex">
-                    <NavLink exact activeClassName="active-link" to='/'>
+                    <NavLink exact to='/'>
                         <div className="nav-item d-lg-flex d-none">
                             <Button variant="contained">
                                 Home
                             </Button>
                         </div>
                     </NavLink>
-                    <a href="#staySafe">
+                    <a href="/#staySafe">
                         <div className="nav-item d-lg-flex d-none">
                             <Button variant="contained" color="inherit">
                                 Protect Yourself
@@ -34,14 +34,14 @@ export const Navbar = () => {
                             </Button>
                         </div>
                     </a>
-                    <a href='/#sympthoms'>
+                    <NavLink exact to='/health-state'>
                         <div className="nav-item d-lg-flex d-none">
                             <Button variant="contained" color="inherit">
                                 Check your Sympthoms
                             </Button>
                         </div>
-                    </a>
-                    <NavLink exact activeClassName="active-link" to='/login'>
+                    </NavLink>
+                    <NavLink exact to='/login'>
                         <div className="nav-item">
                             <Button variant="contained" color="inherit">
                                 Login

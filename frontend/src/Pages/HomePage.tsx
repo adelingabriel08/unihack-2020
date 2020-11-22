@@ -53,8 +53,6 @@ export default function HomePAge() {
             <Header title="How many people have COVID-19?"
                     subtitle="It has spread so rapidly and to so many countries that the World Health Organization has declared it a pandemic"
                     imagePath="assets/images/fever.gif" id="stats"/>
-            <FilledBackground><p>Hello World!</p></FilledBackground>
-            <FilledBackground><p>Hello World!</p></FilledBackground>
         </>
     );
 }
