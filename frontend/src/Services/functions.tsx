@@ -10,15 +10,15 @@ export interface iFunctions {
 const baseURL = "http://34.68.55.0:5010/";
 
 function setToken(token: string) {
-  localStorage.setItem("token", JSON.stringify(token));
+  sessionStorage.setItem("token", JSON.stringify(token));
 }
 
 function getToken() {
-  const token = JSON.parse(localStorage.getItem("token") + "");
+  const token = JSON.parse(sessionStorage.getItem("token") + "");
   return token.token;
 }
 
-export const apiService = () => {
+export const functions = () => {
   async function register(myjson: string) {
     Axios.post(baseURL + "api/Auth/Register", myjson, {
       headers: {
@@ -27,6 +27,7 @@ export const apiService = () => {
     })
       .then(function (response) {
         setToken(response.data);
+        console.log(response.data);
         History.push("/completeprofile");
       })
       .catch(function (error) {
@@ -57,6 +58,7 @@ export const apiService = () => {
       },
     })
       .then(function (response) {
+        console.log(response);
         History.push("/");
       })
       .catch(function (error) {
@@ -64,20 +66,11 @@ export const apiService = () => {
       });
   }
 
-  async function getPatients() {
-    return await Axios.get(baseURL + "getProfiles", {
-      headers: {
-        Authorization: "Bearer " + getToken(),
-      },
-    });
-  }
-
   return {
     register,
     saveProfile,
     login,
-    getPatients,
   };
 };
 
-export default apiService;
+export default functions;

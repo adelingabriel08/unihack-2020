@@ -10,3 +10,22 @@ export interface Profile {
   age: number;
   contact: boolean;
 }
+
+export interface Patient {
+  name: string;
+  age: number;
+  gender: string;
+  address: string;
+  healthState: {
+    temperature: number;
+    dryCaugh: boolean;
+    runnyNose: boolean;
+    tiredNess: boolean;
+    difficultyInBreathing: boolean;
+    soreThroat: boolean;
+    none_Symptom: boolean;
+    pains: boolean;
+    diarrhea: boolean;
+    nasalCongestion: boolean;
+  };
+}

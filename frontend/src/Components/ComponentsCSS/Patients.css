@@ -1,0 +1,18 @@
+.patients {
+  margin: 150px 50px 50px 50px;
+  padding: 20px;
+}
+
+.table-header {
+  background-color: #f8ef42;
+  background-image: linear-gradient(315deg, #f8ef42 0%, #0fd64f 74%);
+  text-align: left;
+}
+
+.collapse-table {
+  background-color: white;
+}
+
+#bigtable {
+  background-color: whitesmoke;
+}
