@@ -36,7 +36,12 @@ namespace unihack.Controllers
                 
             }
             else
+            {
+                var smf = _healthStateRepository.Queryable.FirstOrDefault(t => t.UserId==userId);
+                await _healthStateRepository.DeleteAsync(smf);
                 await _healthStateRepository.UpdateAsync(healthStateEntity);
+            }
+
             return Ok();
         }
        
