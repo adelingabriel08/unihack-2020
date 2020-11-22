@@ -15,8 +15,14 @@ function setToken(token: string) {
 }
 
 function getToken() {
-  const token = JSON.parse(localStorage.getItem("token") + "");
-  return token.token;
+  let token;
+  try {
+    token = JSON.parse(localStorage.getItem("token") + "");
+  }
+  catch(e){
+    console.log("Token couldn't be find!")
+  }
+  return token?.token;
 }
 
 export const apiService = () => {
@@ -43,7 +49,7 @@ export const apiService = () => {
     })
       .then(function (response) {
         setToken(response.data);
-        console.log(response.data);
+        History.push("/completeprofile");
       })
       .catch(function (error) {
         console.log(error);
@@ -58,7 +64,7 @@ export const apiService = () => {
       },
     })
       .then(function (response) {
-        History.push("/");
+        History.push("/health-state");
       })
       .catch(function (error) {
         console.log(error);
@@ -78,12 +84,17 @@ export const apiService = () => {
           console.log(error);
         });
   }
+  const checkAuth = () =>{
+    return !!getToken();
+
+  }
 
   return {
     register,
     saveProfile,
     login,
     addHealthState,
+    checkAuth
   };
 };
 

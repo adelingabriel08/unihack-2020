@@ -1,10 +1,11 @@
-import React from "react"
+import React, {useState} from "react"
 import {Button, Checkbox, FormControlLabel, TextField, Typography} from "@material-ui/core";
 import {HealthState} from "../Models/Models";
 import apiService from "../Services/ApiService";
+import { Redirect } from "react-router-dom";
 
 export const HealthStateComponent = () => {
-    let { addHealthState } = apiService();
+    let { addHealthState, checkAuth } = apiService();
     let healthStateCollector: HealthState = {
         temperature: 0,
         dryCough:	false,
@@ -18,6 +19,8 @@ export const HealthStateComponent = () => {
         severity: 0
 
     };
+    if(!checkAuth())
+        return <Redirect to="/login"/>
     return <div className="container d-flex flex-column align-items-center"
                 style={{marginTop: "200px", marginBottom: "100px"}}>
 
