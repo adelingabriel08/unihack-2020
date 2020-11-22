@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -29,9 +30,12 @@ namespace unihack.Controllers
             var userId = HttpContext.GetCurrentUserId();
             if (userId is null) return Unauthorized();
             healthStateEntity.UserId = userId;
-            
-            await _healthStateRepository.AddAsync((healthStateEntity));
-            return Ok();
+            if(!_healthStateRepository.Queryable.Any(t=>t.UserId==userId)){
+                 await _healthStateRepository.AddAsync((healthStateEntity));
+                return Ok();
+            }
+
+            return Forbid("already has healthEntity");
         }
        
     }

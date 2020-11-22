@@ -1,5 +1,6 @@
 import Axios from "axios";
 import History from "../Components/History";
+import {HealthState} from "../Models/Models";
 
 export interface iFunctions {
   readonly register: (myjson: string) => void;
@@ -14,8 +15,14 @@ function setToken(token: string) {
 }
 
 function getToken() {
-  const token = JSON.parse(localStorage.getItem("token") + "");
-  return token.token;
+  let token;
+  try {
+    token = JSON.parse(localStorage.getItem("token") + "");
+  }
+  catch(e){
+    console.log("Token couldn't be find!")
+  }
+  return token?.token;
 }
 
 export const apiService = () => {
@@ -42,7 +49,7 @@ export const apiService = () => {
     })
       .then(function (response) {
         setToken(response.data);
-        console.log(response.data);
+        History.push("/completeprofile");
       })
       .catch(function (error) {
         console.log(error);
@@ -57,11 +64,29 @@ export const apiService = () => {
       },
     })
       .then(function (response) {
-        History.push("/");
+        History.push("/health-state");
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+  const addHealthState = async (data: HealthState) =>{
+    Axios.post(baseURL + "api/HealthState/Add", JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getToken(),
+      },
+    })
+        .then(function (response) {
+          History.push("/");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+  const checkAuth = () =>{
+    return !!getToken();
+
   }
 
   async function getPatients() {
@@ -77,6 +102,8 @@ export const apiService = () => {
     saveProfile,
     login,
     getPatients,
+    addHealthState,
+    checkAuth
   };
 };
 
