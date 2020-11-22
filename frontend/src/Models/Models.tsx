@@ -27,6 +27,7 @@ export interface Patient {
     diarrhea: boolean;
     nasalCongestion: boolean;
   };
+}
 
 export interface HealthState{
   temperature: number;
