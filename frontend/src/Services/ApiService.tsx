@@ -78,7 +78,6 @@ export const apiService = () => {
       },
     })
         .then(function (response) {
-          History.push("/");
         })
         .catch(function (error) {
           console.log(error);

@@ -14,7 +14,7 @@ export const HealthStateComponent = () => {
 
     useEffect(() => {
         Predict().then((res) => {setPrediction(res.data); setLoading(false); setShowPrediction(true)})
-            .catch()
+            .catch(() => setLoading(false))
     }, [refresh]);
 
     if(loading)
