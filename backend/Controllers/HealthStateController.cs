@@ -35,7 +35,7 @@ namespace unihack.Controllers
                 return Ok();
             }
 
-            return Forbid("already has healthEntity");
+            return BadRequest();
         }
        
     }
