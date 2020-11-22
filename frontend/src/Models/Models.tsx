@@ -10,6 +10,7 @@ export interface Profile {
   age: number;
   contact: boolean;
 }
+
 export interface Patient {
   name: string;
   age: number;
@@ -29,9 +30,9 @@ export interface Patient {
   };
 }
 
-export interface HealthState{
+export interface HealthState {
   temperature: number;
-  dryCough:	boolean;
+  dryCough: boolean;
   runnyNose: boolean;
   tiredNess: boolean;
   difficultyInBreathing: boolean;

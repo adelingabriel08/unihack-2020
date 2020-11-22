@@ -16,3 +16,9 @@
 #bigtable {
   background-color: whitesmoke;
 }
+
+@media (max-width: 1000px) {
+  #bigtable {
+    font-size: 10px;
+  }
+}
