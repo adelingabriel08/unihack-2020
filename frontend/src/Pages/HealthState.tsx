@@ -1,11 +1,30 @@
-import React, {useState} from "react"
-import {Button, Checkbox, FormControlLabel, TextField, Typography} from "@material-ui/core";
+import React, {useEffect, useState} from "react"
+import {Button, Checkbox, CircularProgress, FormControlLabel, TextField, Typography} from "@material-ui/core";
 import {HealthState} from "../Models/Models";
 import apiService from "../Services/ApiService";
 import { Redirect } from "react-router-dom";
+import {PredictComponent} from "../Components/Predict";
 
 export const HealthStateComponent = () => {
-    let { addHealthState, checkAuth } = apiService();
+    let { addHealthState, checkAuth, Predict } = apiService();
+    const [prediction, setPrediction] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [showPrediction, setShowPrediction] = useState(false);
+    const [refresh, setRefresh] = useState(false);
+
+    useEffect(() => {
+        Predict().then((res) => {setPrediction(res.data); setLoading(false); setShowPrediction(true)})
+            .catch()
+    }, [refresh]);
+
+    if(loading)
+        return <div className="container d-flex justify-content-center align-items-center" style={{margin: "400px 0px 400px 0px"}}>
+            <CircularProgress />
+        </div>
+    else if(showPrediction)
+            return <div className="container">
+                <PredictComponent prediction={prediction}/>
+            </div>
     let healthStateCollector: HealthState = {
         temperature: 0,
         dryCough:	false,
@@ -84,7 +103,7 @@ export const HealthStateComponent = () => {
                                    name="diarrhea"/>}
                 label="Diarrhea"
             />
-            <Button style={{width: "30px"}} onClick={()=> addHealthState(healthStateCollector)}>Send</Button>
+            <Button style={{width: "30px"}} onClick={()=> addHealthState(healthStateCollector).then(() => setRefresh(true))}>Send</Button>
         </div>
     </div>
 }

@@ -70,7 +70,7 @@ export const apiService = () => {
         console.log(error);
       });
   }
-  const addHealthState = async (data: HealthState) =>{
+  const addHealthState = async(data: HealthState) =>{
     Axios.post(baseURL + "api/HealthState/Add", JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json",
@@ -89,6 +89,14 @@ export const apiService = () => {
 
   }
 
+  const Predict = async () =>{
+    return Axios.post(baseURL + "Predict", {}, {
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    })
+  }
+
   async function getPatients() {
     return await Axios.get(baseURL + "getProfiles", {
       headers: {
@@ -103,7 +111,8 @@ export const apiService = () => {
     login,
     getPatients,
     addHealthState,
-    checkAuth
+    checkAuth,
+    Predict
   };
 };
 
